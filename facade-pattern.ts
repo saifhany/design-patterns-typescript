@@ -87,3 +87,55 @@ interface EmailProvider {
       console.error('Failed to send email:', error); // Log to the console if an error occurred during email sending
     });
   
+
+
+
+// another ex
+
+
+nterface Store {
+  product(name: string): string
+  category(): string
+}
+
+class Minuman implements Store {
+   product(name: string): string {
+      return name
+   }
+   
+   category(): string {
+      return 'minuman'
+   }
+}
+
+class Makanan implements Store {   
+   product(name: string): string {
+      return name
+   }
+   
+   category(): string {
+     return 'makanan'
+   }
+}
+
+class StoreFaced {
+  public minuman: InstanceType<typeof Minuman>
+  public makanan: InstanceType<typeof Makanan>
+  
+  constructor() {
+    this.minuman = new Minuman()
+    this.makanan = new Makanan()
+  }
+  
+  storeMinuman(name: string): string {
+    return this.minuman.product(name)
+  }
+  
+  storeMakanan(name: string): string {
+    return this.makanan.product(name)
+  }
+}
+
+const res = new StoreFaced()
+console.log(`product name: ${res.storeMinuman("cola cola")} and product category ${res.minuman.category()}`)
+console.log(`product name: ${res.storeMakanan("biskuat")} and product category ${res.makanan.category()}`)
