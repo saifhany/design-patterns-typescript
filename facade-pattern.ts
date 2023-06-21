@@ -93,7 +93,7 @@ interface EmailProvider {
 // another ex
 
 
-nterface Store {
+interface Store {
   product(name: string): string
   category(): string
 }
